@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glow Beauty - Cosmetic Store</title>
+  <style>
+    /* ---------------- RESET ---------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background-color: #fff0f6;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+
+    /* ---------------- HEADER ---------------- */
+    header {
+      background: linear-gradient(135deg, #ff5fa2, #ff8ccf);
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: slideDown 1s ease;
+    }
+
+    header h1 {
+      color: white;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      margin-left: 25px;
+      color: white;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: white;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ---------------- HERO SECTION ---------------- */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 60px;
+      background: linear-gradient(135deg, #ffe0ef, #fff5fa);
+      overflow: hidden;
+    }
+
+    .hero-text {
+      max-width: 500px;
+      animation: fadeInLeft 1.2s ease forwards;
+    }
+
+    .hero-text h2 {
+      font-size: 48px;
+      color: #ff4f9a;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      margin-bottom: 25px;
+      color: #555;
+    }
+
+    .hero-text button {
+      padding: 12px 28px;
+      border: none;
+      border-radius: 25px;
+      background: #ff4f9a;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hero-text button:hover {
+      background: #e63b87;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 79, 154, 0.3);
+    }
+
+    .hero-image {
+      max-width: 450px;
+      animation: fadeInRight 1.2s ease forwards;
+    }
+
+    /* ---------------- FEATURED PRODUCTS ---------------- */
+    .section {
+      padding: 80px 60px;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 36px;
+      color: #ff4f9a;
+      margin-bottom: 50px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-card h3 {
+      margin: 15px 0 8px;
+      font-size: 18px;
+    }
+
+    .product-card p {
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .product-card span {
+      font-weight: bold;
+      color: #ff4f9a;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .product-card button {
+      padding: 8px 18px;
+      border: none;
+      border-radius: 20px;
+      background: #ff4f9a;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .product-card button:hover {
+      background: #e63b87;
+    }
+
+    /* ---------------- ABOUT SECTION ---------------- */
+    .about {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .about-text {
+      flex: 1;
+      animation: fadeInLeft 1s ease forwards;
+    }
+
+    .about-text h3 {
+      font-size: 28px;
+      color: #ff4f9a;
+      margin-bottom: 15px;
+    }
+
+    .about-text p {
+      color: #555;
+      font-size: 16px;
+    }
+
+    .about-image {
+      flex: 1;
+      animation: fadeInRight 1s ease forwards;
+    }
+
+    /* ---------------- TESTIMONIALS ---------------- */
+    .testimonials {
+      background: linear-gradient(135deg, #ffecf6, #fff5fa);
+    }
+
+    .testimonial-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .testimonial h4 {
+      color: #ff4f9a;
+      font-size: 16px;
+    }
+
+    /* ---------------- NEWSLETTER ---------------- */
+    .newsletter {
+      text-align: center;
+      background: linear-gradient(135deg, #ff5fa2, #ff8ccf);
+      color: white;
+      padding: 80px 60px;
+    }
+
+    .newsletter h2 {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+
+    .newsletter p {
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+
+    .newsletter input {
+      padding: 12px 18px;
+      border-radius: 25px;
+      border: none;
+      outline: none;
+      width: 260px;
+      margin-right: 10px;
+    }
+
+    .newsletter button {
+      padding: 12px 28px;
+      border: none;
+      border-radius: 25px;
+      background: white;
+      color: #ff4f9a;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter button:hover {
+      background: #ffe0ef;
+      transform: translateY(-3px);
+    }
+
+    /* ---------------- FOOTER ---------------- */
+    footer {
+      background: #1f1f1f;
+      color: #ccc;
+      text-align: center;
+      padding: 25px 20px;
+    }
+
+    footer p {
+      font-size: 14px;
+    }
+
+    /* ---------------- ANIMATIONS ---------------- */
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        transform: translateX(-60px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        transform: translateX(60px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero-text h2 {
+        font-size: 36px;
+      }
+
+      .about {
+        flex-direction: column;
+      }
+
+      .newsletter input {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .newsletter button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header>
+    <h1>Glow Beauty</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#newsletter">Subscribe</a>
+    </nav>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h2>Discover Your Natural Glow</h2>
+      <p>Premium cosmetics made with love, care, and cruelty-free ingredients to enhance your beauty.</p>
+      <button>Shop Now</button>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop" alt="Cosmetic Products" />
+    </div>
+  </section>
+
+  <!-- ================= FEATURED PRODUCTS ================= -->
+  <section class="section" id="products">
+    <h2>Featured Products</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1585386959984-a4155228b96b?q=80&w=400&auto=format&fit=crop" alt="Lipstick" />
+        <h3>Velvet Lipstick</h3>
+        <p>Rich color, smooth finish.</p>
+        <span>$18.00</span>
+        <button>Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?q=80&w=400&auto=format&fit=crop" alt="Foundation" />
+        <h3>Flawless Foundation</h3>
+        <p>Perfect coverage, all day.</p>
+        <span>$25.00</span>
+        <button>Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=400&auto=format&fit=crop" alt="Mascara" />
+        <h3>Volume Mascara</h3>
+        <p>Bold lashes, stunning eyes.</p>
+        <span>$15.00</span>
+        <button>Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1580910051073-8b2a8c7c1bba?q=80&w=400&auto=format&fit=crop" alt="Blush" />
+        <h3>Rose Blush</h3>
+        <p>Natural rosy glow.</p>
+        <span>$14.00</span>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT SECTION ================= -->
+  <section class="section" id="about">
+    <div class="about">
+      <div class="about-text">
+        <h3>About Glow Beauty</h3>
+        <p>
+          At Glow Beauty, we believe every person deserves to feel confident and beautiful. Our products are crafted with high-quality ingredients, ensuring safety, comfort, and long-lasting results. We are proudly cruelty-free and committed to sustainability.
+        </p>
+      </div>
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=800&auto=format&fit=crop" alt="Makeup Artist" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section class="section testimonials" id="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial">
+        <p>"Absolutely love these products! My skin feels amazing and looks flawless."</p>
+        <h4>- Sarah K.</h4>
+      </div>
+
+      <div class="testimonial">
+        <p>"The lipstick shades are stunning and long-lasting. Highly recommended!"</p>
+        <h4>- Ayesha M.</h4>
+      </div>
+
+      <div class="testimonial">
+        <p>"Great quality, beautiful packaging, and fast delivery. I'm a fan!"</p>
+        <h4>- Emily R.</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NEWSLETTER ================= -->
+  <section class="newsletter" id="newsletter">
+    <h2>Join Our Beauty Club</h2>
+    <p>Subscribe to get exclusive offers, beauty tips, and new product updates.</p>
+    <form>
+      <input type="email" placeholder="Enter your email" required />
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <p>© 2026 Glow Beauty. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
